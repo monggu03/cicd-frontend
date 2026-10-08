@@ -29,7 +29,7 @@ export default function App() {
       <header className="header">
         <p className="eyebrow">GDGoC DGU × HIU</p>
         <h1>
-          동홍동락 <span className="accent">1차 세미나 일까</span>
+          동홍동락 <span className="accent">1차 세미나 일까 아닐까</span>
         </h1>
         <p className="sub">타임테이블 · 총 {totalMinutes(sessions)}분</p>
       </header>
