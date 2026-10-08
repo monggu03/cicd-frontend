@@ -1,0 +1,42 @@
+# ─────────────────────────────────────────────────────────────
+# Frontend CI : PR을 열거나 main에 올라올 때마다 프론트를 검사합니다.
+#   lint(문법·실수) → test(계산 로직) → build(배포 가능한지)
+# 배포(CD)는 Vercel이 GitHub 연결만으로 알아서 하므로 여기서는 "검사"만 합니다.
+# ─────────────────────────────────────────────────────────────
+name: Frontend CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    # 브랜치 보호 규칙에서 "필수 검사"로 고를 때 이 이름으로 찾습니다.
+    name: frontend-check
+    runs-on: ubuntu-latest
+    steps:
+      - name: 코드 내려받기
+        uses: actions/checkout@v7
+
+      - name: Node.js 준비
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: 의존성 설치 (package-lock.json 그대로)
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Test
+        run: npm test
+
+      - name: Build
+        run: npm run build
