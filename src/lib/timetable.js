@@ -12,7 +12,7 @@ export function toMinutes(hhmm) {
 export function toHHMM(totalMinutes) {
   const h = Math.floor(totalMinutes / 60) % 24
   const m = totalMinutes % 60
-  return `${h}:${m}`
+  return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`
 }
 
 /**
