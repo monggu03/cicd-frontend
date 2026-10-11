@@ -1,5 +1,5 @@
 import { useEffect, useState} from 'react'
-import SessionTable from './components/SessionTable.jsx'
+import SessionTable from './components/sessionTable.jsx'
 import { fetchHello, fetchSessions, hasServer } from './api/client.js'
 import { buildTimetable, totalMinutes } from './lib/timetable.js'
 
